@@ -1,5 +1,6 @@
 # itti_test
-
+Versión Flutter 3.10.5
+Dart 3.0.5 • DevTools 2.23.1
 A new Flutter project.
 
 ## Getting Started
