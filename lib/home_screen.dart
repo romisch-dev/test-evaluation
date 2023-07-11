@@ -2,27 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:math';
-
 import 'package:itti_test/login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
   @override
   HomeScreenState createState() => HomeScreenState();
 }
 
 class HomeScreenState extends State<HomeScreen> {
   void _logout(BuildContext context) {
-    // Aquí puedes agregar la lógica para cerrar sesión
-    // y redireccionar al login
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => const LoginScreen(),
+        builder: (context) => LoginScreen(),
       ),
     );
-    //Navigator.pushReplacementNamed(context, '/login');
   }
 
   int _currentPage = 1;
@@ -74,7 +69,9 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: const Text('Lista de clientes'),
         actions: [
           IconButton(
@@ -111,28 +108,24 @@ class HomeScreenState extends State<HomeScreen> {
                           title: Text(
                             '${user['first_name']} ${user['last_name']}',
                           ),
-                          subtitle: TextButton(
-                            onPressed: () {
-                              _showScreen(context, index);
-                            },
-                            style: ButtonStyle(
-                              alignment: Alignment.centerLeft,
-                              overlayColor: MaterialStateColor.resolveWith(
-                                (states) => Colors.transparent,
-                              ),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
+                          subtitle: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
                                   user['email'],
                                   style: const TextStyle(
                                     decoration: TextDecoration.underline,
                                     color: Colors.blue,
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.visibility),
+                                onPressed: () {
+                                  _showScreen(context, index);
+                                },
+                              ),
+                            ],
                           ),
                         );
                       },
@@ -153,6 +146,11 @@ class HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   _changePage(1);
                 },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateColor.resolveWith(
+                    (states) => Colors.black,
+                  ),
+                ),
                 child: const Text('Página 1'),
               ),
               const SizedBox(width: 16),
@@ -160,6 +158,11 @@ class HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   _changePage(2);
                 },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateColor.resolveWith(
+                    (states) => Colors.black,
+                  ),
+                ),
                 child: const Text('Página 2'),
               ),
             ],
@@ -183,8 +186,16 @@ class ActiveClientScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
-        title: const Text('Cliente Activo'),
+        backgroundColor: Colors.black,
+        title: const Text(
+          'Cliente Activo',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Center(
         child: Column(
@@ -221,8 +232,16 @@ class InactiveClientScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
-        title: const Text('Cliente Inactivo'),
+        backgroundColor: Colors.black,
+        title: const Text(
+          'Cliente Inactivo',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Center(
         child: Column(
@@ -259,8 +278,16 @@ class BlockedClientScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
-        title: const Text('Cliente Bloqueado'),
+        backgroundColor: Colors.black,
+        title: const Text(
+          'Cliente Bloqueado',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Center(
         child: Column(
